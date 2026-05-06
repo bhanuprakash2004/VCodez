@@ -1,0 +1,81 @@
+/* BACKGROUND */
+.login-bg {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+}
+
+/* GLASS CARD */
+.login-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 15px;
+  width: 320px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  color: #333;
+}
+
+/* INPUT GROUP */
+.input-group {
+  position: relative;
+  margin: 15px 0;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 40px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* ICON LEFT */
+.input-group i:first-child {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+/* ICON RIGHT (EYE) */
+.input-group i:last-child {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background: #ff6b35;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ff3d00;
+}
+
+/* ERROR */
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+/* SIGNUP */
+.signup-text a {
+  color: #007bff;
+  text-decoration: none;
+}
