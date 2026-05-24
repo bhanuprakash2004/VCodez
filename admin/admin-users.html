@@ -1,0 +1,109 @@
+<div class="admin-layout">
+
+  <div class="admin-sidebar">
+
+    <h2>Admin Panel</h2>
+
+    <button class="refresh-dashboard" (click)="loadUsers()">
+      ↻ Refresh
+    </button>
+
+    <a routerLink="/admin">
+      Dashboard
+    </a>
+
+    <a routerLink="/admin-users">
+      Users
+    </a>
+
+    <a routerLink="/admin-recycle">
+      Recycle Bin
+    </a>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+
+  </div>
+
+  <div class="admin-content">
+
+    <h1>All Users</h1>
+
+    <div class="table-card">
+
+      <h2 *ngIf="loading">
+        Loading users...
+      </h2>
+
+      <input
+        *ngIf="!loading && users.length > 0"
+        type="text"
+        class="admin-search"
+        placeholder="Search users..."
+        [(ngModel)]="searchText"
+        (input)="searchUsers()"
+      >
+
+      <table *ngIf="!loading && filteredUsers.length > 0">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let u of filteredUsers; let i = index">
+
+            <td>{{i + 1}}</td>
+
+            <td>{{u.username}}</td>
+
+            <td>{{u.phone || 'Not Added'}}</td>
+
+            <td>
+
+              <div class="role-box">
+
+                <span
+                  [ngClass]="{
+                    'role-admin': u.role === 'admin',
+                    'role-user': u.role === 'user'
+                  }"
+                >
+                  {{u.role}}
+                </span>
+
+                <button
+                  class="delete-icon"
+                  *ngIf="u.role !== 'admin'"
+                  (click)="deleteUser(u.id)"
+                  title="Move to recycle bin"
+                >
+                  🗑
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <h2 class="empty-text" *ngIf="!loading && filteredUsers.length === 0">
+        No users found
+      </h2>
+
+    </div>
+
+  </div>
+
+</div>

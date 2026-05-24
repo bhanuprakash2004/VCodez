@@ -1,0 +1,135 @@
+<div class="checker-page">
+
+  <div class="form-card glass-card">
+
+    <h2>💧 Water Quality Checker</h2>
+
+    <p class="subtitle">
+      Analyze water purpose using pH, turbidity, and temperature
+    </p>
+
+    <label>Area</label>
+    <input
+      type="text"
+      [(ngModel)]="data.area"
+      placeholder="Enter Area"
+      [disabled]="checked"
+    >
+
+
+    <label>pH Level</label>
+    <input
+      type="number"
+      [(ngModel)]="data.ph"
+      min="0"
+      max="14"
+      step="0.1"
+      placeholder="Enter pH: 0 - 14"
+    >
+
+    <label>Turbidity (NTU)</label>
+    <input
+      type="number"
+      [(ngModel)]="data.turbidity"
+      min="0"
+      max="100"
+      step="0.1"
+      placeholder="Enter Turbidity: 0 - 100 NTU"
+    >
+
+    <label>Temperature (°C)</label>
+    <input
+      type="number"
+      [(ngModel)]="data.temperature"
+      min="0"
+      max="100"
+      step="0.1"
+      placeholder="Enter Temperature: 0°C - 100°C"
+    >
+
+    <button class="check-btn" type="button" (click)="submit()">
+      {{ checked ? 'Check Again' : 'Check Quality' }}
+    </button>
+
+    <button class="new-btn" type="button" (click)="newCheck()" *ngIf="checked">
+      New Area
+    </button>
+
+    <p class="error" *ngIf="message">
+      {{message}}
+    </p>
+
+  </div>
+
+  <div class="result-card glass-card" *ngIf="result">
+
+    <h2> Entered Data</h2>
+
+    <div class="chart-box">
+      <canvas #myChart></canvas>
+    </div>
+
+    <div class="result-box">
+
+      <div
+        class="badge"
+        [ngClass]="{
+          'badge-good': result.quality === 'Good',
+          'badge-moderate': result.quality === 'Moderate',
+          'badge-poor': result.quality === 'Poor'
+        }"
+      >
+        {{result.badge}}
+      </div>
+
+      <h3>
+        Quality:
+        <span
+          [ngClass]="{
+            'good': result.quality === 'Good',
+            'moderate': result.quality === 'Moderate',
+            'poor': result.quality === 'Poor'
+          }"
+        >
+          {{result.quality}}
+        </span>
+      </h3>
+<div class="meter-box">
+
+  <div class="meter-title">
+    Safety Meter: {{result.meter}}%
+  </div>
+
+  <div class="meter-track">
+
+    <div
+      class="meter-fill"
+      [style.width.%]="result.meter"
+      [ngClass]="{
+        'meter-good': result.quality === 'Good',
+        'meter-moderate': result.quality === 'Moderate',
+        'meter-poor': result.quality === 'Poor'
+      }">
+    </div>
+
+  </div>
+
+</div>
+
+      <p class="purpose">
+        {{result.purpose}}
+      </p>
+
+      <p class="usage-note">
+        💧 Usage: {{result.usage}}
+      </p>
+
+      <p class="temperature-note">
+        🌡️ {{result.temperatureNote}}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

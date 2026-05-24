@@ -1,0 +1,87 @@
+<div class="profile-page" *ngIf="profile">
+
+  <div class="saved-popup" *ngIf="showPopup">
+    {{popupMessage}}
+  </div>
+
+  <div class="profile-card">
+
+    <div class="top-section">
+
+      <div class="avatar">👤</div>
+
+      <h1 *ngIf="!editMode">
+        {{profile.username || 'User'}}
+      </h1>
+
+      <input
+        *ngIf="editMode"
+        class="profile-input username-input"
+        [(ngModel)]="profile.username"
+        placeholder="Enter Username">
+
+      <p>Registered User</p>
+
+      <button
+        *ngIf="!editMode"
+        class="edit-btn"
+        (click)="editProfile()">
+         Edit Profile
+      </button>
+
+      <button
+        *ngIf="editMode"
+        class="save-btn"
+        (click)="saveProfile()">
+         Save Changes
+      </button>
+
+    </div>
+
+    <div class="info-grid">
+
+      <div class="info-box">
+
+        <h3> Phone</h3>
+
+        <p *ngIf="!editMode">
+          {{profile.phone || 'Not Added'}}
+        </p>
+
+        <input
+          *ngIf="editMode"
+          class="profile-input"
+          [(ngModel)]="profile.phone"
+          placeholder="Enter Phone Number">
+
+      </div>
+
+      <div class="info-box">
+
+        <h3>📊 Total Records</h3>
+
+        <p>{{profile.totalRecords || 0}}</p>
+
+      </div>
+
+      <div class="info-box good">
+
+        <h3>✅ Good Water</h3>
+
+        <p>{{profile.goodWater || 0}}</p>
+
+      </div>
+
+      <div class="info-box poor">
+
+        <h3>⚠ Poor Water</h3>
+
+        <p>{{profile.poorWater || 0}}</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

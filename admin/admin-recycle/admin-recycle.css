@@ -1,0 +1,223 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255,255,255,0.35), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(14,165,233,0.28), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(20,184,166,0.22), transparent 35%),
+    linear-gradient(135deg,#0f172a,#164e63,#0f766e);
+  overflow-x: hidden;
+}
+
+/* SIDEBAR */
+
+.admin-sidebar {
+  width: 250px;
+  background: rgba(15,23,42,0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: white;
+  padding: 30px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 14px 0 40px rgba(0,0,0,0.25);
+  border-right: 1px solid rgba(255,255,255,0.16);
+}
+
+.admin-sidebar h2 {
+  font-size: 25px;
+  margin-bottom: 24px;
+  color: #ccfbf1;
+  letter-spacing: 0.5px;
+}
+
+.admin-sidebar a {
+  color: #f8fafc;
+  text-decoration: none;
+  padding: 14px 15px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.1);
+  font-size: 16px;
+  transition: 0.35s ease;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.admin-sidebar a:hover {
+  background: linear-gradient(135deg,#14b8a6,#2563eb);
+  transform: translateX(7px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(37,99,235,0.28);
+}
+
+/* BUTTONS */
+
+.refresh-dashboard,
+.logout-btn {
+  width: auto;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 18px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.35s ease;
+}
+
+.refresh-dashboard {
+  background: linear-gradient(135deg,#06b6d4,#0f766e);
+  align-self: flex-start;
+  box-shadow: 0 12px 25px rgba(6,182,212,0.28);
+}
+
+.logout-btn {
+  margin-top: auto;
+  background: linear-gradient(135deg,#ef4444,#7f1d1d);
+  box-shadow: 0 12px 25px rgba(239,68,68,0.28);
+}
+
+.refresh-dashboard:hover,
+.logout-btn:hover {
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.28);
+}
+
+/* CONTENT */
+
+.admin-content {
+  flex: 1;
+  padding: 38px;
+}
+
+.admin-content h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: white;
+  text-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+/* TABLE CARD */
+
+.table-card {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 32px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.35);
+  animation: fadeUp 0.8s ease;
+}
+
+/* TABLE */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+th {
+  background: linear-gradient(135deg,#0f766e,#1e40af);
+  color: white;
+  padding: 16px;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+}
+
+td {
+  padding: 15px;
+  border: 1px solid rgba(226,232,240,0.38);
+  text-align: center;
+  color: #0f172a;
+  background: rgba(255,255,255,0.78);
+  font-weight: 500;
+}
+
+tr:nth-child(even) td {
+  background: rgba(224,242,254,0.82);
+}
+
+tr:hover td {
+  background: linear-gradient(135deg,rgba(204,251,241,0.9),rgba(219,234,254,0.9));
+  transform: scale(1.01);
+  transition: 0.3s ease;
+}
+
+/* RESTORE BUTTON */
+
+.restore-btn {
+  padding: 10px 17px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#22c55e,#15803d);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.35s ease;
+  box-shadow: 0 10px 22px rgba(34,197,94,0.28);
+}
+
+.restore-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.25);
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: auto;
+    min-height: auto;
+  }
+
+  .admin-content {
+    padding: 24px;
+  }
+
+  .admin-content h1 {
+    font-size: 32px;
+  }
+
+  .table-card {
+    padding: 22px;
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 700px;
+  }
+}
+
+@media(max-width:600px) {
+  .admin-content {
+    padding: 18px;
+  }
+
+  .admin-content h1 {
+    font-size: 28px;
+  }
+
+  .table-card {
+    padding: 16px;
+    border-radius: 24px;
+  }
+}

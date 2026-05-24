@@ -1,0 +1,147 @@
+<div class="admin-layout">
+
+  <div class="admin-sidebar">
+    <h2>Admin Panel</h2>
+
+    <button class="refresh-dashboard" (click)="loadDashboard()">
+      ↻ Refresh
+    </button>
+
+    <a routerLink="/admin">
+       Dashboard
+    </a>
+
+    <a routerLink="/admin-users">
+       Users
+    </a>
+<a routerLink="/admin-recycle">
+   Recycle Bin
+</a>
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <div class="admin-content">
+
+    <h1>Records Dashboard</h1>
+
+    <div class="cards">
+
+      <div class="card">
+        <h2>{{totalUsers}}</h2>
+        <p>Total Users</p>
+      </div>
+
+      <div class="card">
+        <h2>{{totalRecords}}</h2>
+        <p>Total Records</p>
+      </div>
+
+      <div class="card good-card">
+        <h2>{{goodWater}}</h2>
+        <p>Good Water</p>
+      </div>
+
+      <div class="card moderate-card">
+        <h2>{{moderateWater}}</h2>
+        <p>Moderate Water</p>
+      </div>
+
+      <div class="card poor-card">
+        <h2>{{poorWater}}</h2>
+        <p>Poor Water</p>
+      </div>
+
+    </div>
+
+    <div class="dashboard-bottom">
+
+      <div class="info-box">
+        <h2>Water Analysis</h2>
+
+        <p>
+          Good Water:
+          <b>{{ ((goodWater / totalRecords) * 100 || 0).toFixed(1) }}%</b>
+        </p>
+
+        <p>
+          Moderate Water:
+          <b>{{ ((moderateWater / totalRecords) * 100 || 0).toFixed(1) }}%</b>
+        </p>
+
+        <p>
+          Poor Water:
+          <b>{{ ((poorWater / totalRecords) * 100 || 0).toFixed(1) }}%</b>
+        </p>
+      </div>
+
+      <div class="chart-card">
+        <h2>Quality Chart</h2>
+
+        <div class="chart-box">
+          <canvas id="adminChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="user-analysis">
+
+      <h2>User Record Analysis</h2>
+
+      <table *ngIf="userStats.length > 0">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Total Records</th>
+            <th>Good</th>
+            <th>Moderate</th>
+            <th>Poor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let u of userStats">
+
+            <td>{{u.user}}</td>
+
+            <td>{{u.totalRecords}}</td>
+
+            <td>
+              {{u.goodCount}}
+              <br>
+              <small>
+                ({{ ((u.goodCount / u.totalRecords) * 100 || 0).toFixed(1) }}%)
+              </small>
+            </td>
+
+            <td>
+              {{u.moderateCount}}
+              <br>
+              <small>
+                ({{ ((u.moderateCount / u.totalRecords) * 100 || 0).toFixed(1) }}%)
+              </small>
+            </td>
+
+            <td>
+              {{u.poorCount}}
+              <br>
+              <small>
+                ({{ ((u.poorCount / u.totalRecords) * 100 || 0).toFixed(1) }}%)
+              </small>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 *ngIf="userStats.length === 0">
+        No user records found
+      </h3>
+
+    </div>
+
+  </div>
+
+</div>

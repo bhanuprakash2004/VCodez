@@ -1,0 +1,161 @@
+<div class="table-container">
+
+  <h2> Your Water Analysis</h2>
+
+<div class="top-row">
+
+  <input
+    type="text"
+    placeholder="Search Area or Quality..."
+    [(ngModel)]="searchText"
+    (input)="search()"
+    class="search-box"
+  >
+
+  <select
+    [(ngModel)]="selectedQuality"
+    (change)="filterQuality()"
+    class="filter-box"
+  >
+    <option value="All">All Quality</option>
+    <option value="Good">Good</option>
+    <option value="Moderate">Moderate</option>
+    <option value="Poor">Poor</option>
+  </select>
+
+  <div class="top-buttons">
+
+    <button class="clear-btn" (click)="clearFilters()">
+      Clear
+    </button>
+
+    <button class="show-btn" (click)="clearFilters()">
+      Show Data
+    </button>
+    <button class="pdf-btn" (click)="downloadPDF()">
+  Download PDF
+</button>
+    <button class="excel-btn" (click)="downloadExcel()">
+  Download Excel
+</button>
+  </div>
+
+  <div class="action-buttons" *ngIf="selectedIds.length > 0">
+
+    <button class="chart-btn" (click)="showSelectedCharts()">
+      Show Chart
+    </button>
+
+    <button class="delete-selected" (click)="deleteSelected()">
+      Delete Selected
+    </button>
+
+  </div>
+
+</div>
+
+  <p class="message-text" *ngIf="!loading && message">{{message}}</p>
+
+  <table *ngIf="!loading && filteredRecords.length > 0">
+
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th (click)="sort('area')">Area ⬍</th>
+        <th (click)="sort('ph')">pH ⬍</th>
+        <th (click)="sort('turbidity')">Turbidity ⬍</th>
+        <th (click)="sort('temperature')">Temperature ⬍</th>
+        <th (click)="sort('quality')">Quality ⬍</th>
+        <th>Usage</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let d of paginatedRecords">
+
+        <td>
+          <input
+            type="checkbox"
+            [checked]="isSelected(d.id)"
+            (change)="toggleSelect(d.id, $event)"
+          >
+        </td>
+
+        <td>{{d.area}}</td>
+        <td>{{d.ph}}</td>
+        <td>{{d.turbidity}}</td>
+        <td>{{d.temperature}}</td>
+        <td>{{d.usage}}</td>
+
+        <td
+          [ngClass]="{
+            'good': d.quality === 'Good',
+            'moderate': d.quality === 'Moderate',
+            'poor': d.quality === 'Poor'
+          }"
+        >
+          {{d.quality}}
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  <div class="pagination" *ngIf="!loading && filteredRecords.length > 0">
+
+    <button (click)="prevPage()" [disabled]="currentPage === 1">
+      ◀ Prev
+    </button>
+
+    <span>Page {{currentPage}} of {{totalPages}}</span>
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next ▶
+    </button>
+
+  </div>
+
+  <div class="charts-section" *ngIf="showChart">
+
+    <div class="charts-header">
+      <h2> Selected Records Charts</h2>
+
+      <button class="close-chart" (click)="closeCharts()">
+        Close
+      </button>
+    </div>
+
+    <div class="charts-grid">
+
+      <div
+        class="single-chart-card"
+        *ngFor="let record of selectedChartRecords; let i = index"
+      >
+
+        <h3>{{record.area}}</h3>
+
+        <p>
+          Quality:
+          <span
+            [ngClass]="{
+              'good': record.quality === 'Good',
+              'moderate': record.quality === 'Moderate',
+              'poor': record.quality === 'Poor'
+            }"
+          >
+            {{record.quality}}
+          </span>
+        </p>
+
+        <div class="mini-chart-box">
+          <canvas id="chart_{{i}}"></canvas>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

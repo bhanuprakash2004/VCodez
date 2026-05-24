@@ -1,0 +1,198 @@
+<div class="awareness-page">
+
+  <section class="hero-section">
+    <div class="hero-card">
+      <h1>💧 Smart Water Conservation</h1>
+      <p>
+        Learn how to save water, reduce pollution,
+        reuse resources, and build a sustainable future
+        using smart water management techniques.
+      </p>
+    </div>
+  </section>
+
+  <section class="tips-section">
+    <h2> Smart Conservation Methods</h2>
+
+    <div class="tips-grid">
+
+      <div class="tip-card">
+        <h3>Rainwater Harvesting</h3>
+        <p>
+          Collect and store rainwater to recharge groundwater
+          and reduce water shortage.
+        </p>
+        <a href="https://en.wikipedia.org/wiki/Rainwater_harvesting" target="_blank" class="learn-btn">
+          Learn More
+        </a>
+      </div>
+
+      <div class="tip-card">
+        <h3>Reduce Daily Waste</h3>
+        <p>
+          Close taps, fix leakages, and avoid unnecessary
+          water flow at home.
+        </p>
+        <a href="https://www.wikihow.com/Save-Water" target="_blank" class="learn-btn">
+          Learn More
+        </a>
+      </div>
+
+      <div class="tip-card">
+        <h3>Smart Farming</h3>
+        <p>
+          Use drip irrigation, sprinklers,
+          and planned watering to save water in agriculture.
+        </p>
+        <a href="https://www.fao.org/land-water/water/water-management/en/" target="_blank" class="learn-btn">
+          Learn More
+        </a>
+      </div>
+
+      <div class="tip-card">
+        <h3>Reuse Treated Water</h3>
+        <p>
+          Use treated wastewater for gardening,
+          cleaning, cooling, and non-drinking purposes.
+        </p>
+        <a href="https://3daqua.in/blog/how-to-reuse-treated-sewage-water-effectively-in-india/" target="_blank" class="learn-btn">
+          Learn More
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="usage-section">
+    <h2> Water Usage Based On Quality</h2>
+
+    <div class="usage-grid">
+
+      <div class="usage-card">
+        <h3> Drinking Water</h3>
+        <p>
+          Water with balanced pH and safe turbidity
+          is suitable for drinking and cooking.
+        </p>
+        <button class="arrow-btn" (click)="openUsage(usage[0])">
+  Check Drinking Range <span>➜</span>
+</button>
+      </div>
+
+      <div class="usage-card">
+        <h3> Agricultural Water</h3>
+        <p>
+          Moderate quality water can be used
+          for irrigation and farming.
+        </p>
+        <button class="arrow-btn" (click)="openUsage(usage[1])">
+  Farm Water Range <span>➜</span>
+</button>
+      </div>
+
+      <div class="usage-card">
+        <h3> Industrial Water</h3>
+        <p>
+          High mineral or treated water
+          can be reused in industries and cooling systems.
+        </p>
+       <button class="arrow-btn" (click)="openUsage(usage[2])">
+  Industry Range <span>➜</span>
+</button>
+      </div>
+
+      <div class="usage-card">
+        <h3> Unsafe Water</h3>
+        <p>
+          Highly polluted water should not be used
+          for human consumption.
+        </p>
+        <button class="arrow-btn" (click)="openUsage(usage[3])">
+  Safety Limit <span>➜</span>
+</button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="disease-section">
+    <h2>⚠️ Diseases Caused By Unsafe Water</h2>
+
+    <div class="disease-grid">
+
+      <div class="disease-card">
+        <h3>Cholera</h3>
+        <p>
+          Dangerous infection caused by consuming contaminated water.
+        </p>
+        <a href="https://www.cdc.gov/cholera/treatment/index.html" target="_blank" class="learn-btn disease-btn">
+          Treatment Info
+        </a>
+      </div>
+
+      <div class="disease-card">
+        <h3>Typhoid</h3>
+        <p>
+          Spreads through unsafe drinking water and poor sanitation.
+        </p>
+        <a href="https://www.cdc.gov/typhoid-fever/prevention/index.html" target="_blank" class="learn-btn disease-btn">
+          Prevention Info
+        </a>
+      </div>
+
+      <div class="disease-card">
+        <h3>Diarrhea</h3>
+        <p>
+          Common disease caused due to polluted water consumption.
+        </p>
+        <a href="https://www.cdc.gov/mmwr/preview/mmwrhtml/00018677.htm" target="_blank" class="learn-btn disease-btn">
+          Care Info
+        </a>
+      </div>
+
+      <div class="disease-card">
+        <h3>Skin Infections</h3>
+        <p>
+          Using contaminated water can cause skin allergies and infections.
+        </p>
+        <a href="https://www.cdc.gov/healthy-swimming/prevention/index.html" target="_blank" class="learn-btn disease-btn">
+          Prevention Info
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="fact-section">
+    <div class="fact-card">
+      <h2> Water Awareness Fact</h2>
+      <p>
+        One minute of running tap water can waste
+        more than 6 liters of clean water.
+      </p>
+    </div>
+  </section>
+
+  <div class="modal-overlay" *ngIf="selectedUsage">
+
+    <div class="usage-modal">
+
+      <button class="close-btn" (click)="closeUsage()">×</button>
+
+      <div class="modal-icon">{{selectedUsage.icon}}</div>
+
+      <h2>{{selectedUsage.type}}</h2>
+
+      <div class="range-box">
+        {{selectedUsage.range}}
+      </div>
+
+      <p>
+        {{selectedUsage.details}}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

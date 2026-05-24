@@ -1,0 +1,59 @@
+<div class="signup-bg">
+
+  <div class="signup-card">
+
+    <h2>Create Account</h2>
+
+    <p class="subtitle">
+      Join the Water Quality Monitoring System
+    </p>
+
+    <div class="input-group">
+      <input [(ngModel)]="username" placeholder="Enter Username">
+    </div>
+
+    <div class="input-group">
+      <input
+        [(ngModel)]="phone"
+        type="tel"
+        maxlength="10"
+        placeholder="Enter Indian Mobile Number"
+      >
+    </div>
+
+    <div class="input-group">
+      <input
+        [(ngModel)]="password"
+        type="password"
+        placeholder="Create Password"
+      >
+    </div>
+
+    <div class="input-group">
+      <input
+        [(ngModel)]="confirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+      >
+    </div>
+
+    <div class="input-group">
+      <input
+        [(ngModel)]="secretCode"
+        type="text"
+        placeholder="Secret Code (optional)"
+      >
+    </div>
+
+    <button (click)="signup()">Signup</button>
+
+    <p class="error" *ngIf="message">{{message}}</p>
+
+    <p class="login-text">
+      Already have account?
+      <a routerLink="/">Login</a>
+    </p>
+
+  </div>
+
+</div>

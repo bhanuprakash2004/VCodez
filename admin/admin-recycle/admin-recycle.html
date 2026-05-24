@@ -1,0 +1,84 @@
+<div class="admin-layout">
+
+  <div class="admin-sidebar">
+
+    <h2>Admin Panel</h2>
+
+    <button class="refresh-dashboard" (click)="loadRecycleUsers()">
+      ↻ Refresh
+    </button>
+
+    <a routerLink="/admin">
+       Dashboard
+    </a>
+
+    <a routerLink="/admin-users">
+       Users
+    </a>
+
+    <a routerLink="/admin-recycle">
+       Recycle Bin
+    </a>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+
+  </div>
+
+  <div class="admin-content">
+
+    <h1>Recycle Bin</h1>
+
+    <div class="table-card">
+
+      <h2 *ngIf="loading">
+        Loading deleted users...
+      </h2>
+
+      <table *ngIf="!loading && users.length > 0">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Restore</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let u of users; let i = index">
+
+            <td>{{i + 1}}</td>
+
+            <td>{{u.username}}</td>
+
+            <td>{{u.phone || 'Not Added'}}</td>
+
+            <td>{{u.role}}</td>
+
+            <td>
+              <button
+                class="restore-btn"
+                (click)="restoreUser(u.id)"
+              >
+                Restore
+              </button>
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
+
+      <h2 *ngIf="!loading && users.length === 0">
+        Recycle bin is empty
+      </h2>
+
+    </div>
+
+  </div>
+
+</div>

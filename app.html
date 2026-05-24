@@ -1,0 +1,35 @@
+<div class="topbar" *ngIf="showNavbar()">
+  <span class="menu-btn" (click)="toggleMenu()">☰</span>
+
+</div>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar" [class.open]="menuOpen">
+    <h2>Menu</h2>
+
+    <a routerLink="/home" (click)="toggleMenu()"> Home</a>
+    <a routerLink="/awareness" (click)="toggleMenu()"> Water Awareness</a>
+    <a routerLink="/checker" (click)="toggleMenu()"> Checker</a>
+    <a routerLink="/table" (click)="toggleMenu()"> Data Table</a>
+    <a routerLink="/about" (click)="toggleMenu()"> About</a>
+
+    <hr>
+
+    <a routerLink="/profile" (click)="toggleMenu()" class="profile-link">
+  👤 {{username}}
+</a>
+
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" *ngIf="menuOpen" (click)="toggleMenu()"></div>
+
+  <!-- Page content -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
